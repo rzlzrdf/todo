@@ -6,7 +6,9 @@ const Todos = () => {
      const [data, setData] = useState([])
 
      useEffect(() => {
-          axios.get('https://jsonplaceholder.typicode.com/todos')
+          let id = JSON.parse(localStorage.getItem('userId'))
+          console.log(id)
+          axios.get(`https://jsonplaceholder.typicode.com/users/${id}/todos`)
                .then(function (response) {
                     setData(response.data)
                     console.table(response.data)
@@ -14,13 +16,14 @@ const Todos = () => {
                .catch(error => {
                     console.log(error)
                })
+
      }, [setData])
+
      return (
           <div className='w-3/4 h-auto overflow-ellipsis max-md:w-full'>
-               {data.map(res=>{
-                    return <Items key={res.id} title={res.title} cek={res.title} />
+               {data.map(res => {
+                    return <Items key={res.id} id={res.id} title={res.title} cek={res.completed} />
                })}
-               <Items />
           </div>
      )
 }
