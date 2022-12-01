@@ -6,15 +6,14 @@ const Todos = () => {
      const [data, setData] = useState([])
 
      useEffect(() => {
-          let id = JSON.parse(localStorage.getItem('userId'))
-          console.log(id)
+          const id = JSON.parse(localStorage.getItem('userId')) 
           axios.get(`https://jsonplaceholder.typicode.com/users/${id}/todos`)
-               .then(function (response) {
+               .then((response) => {
                     setData(response.data)
                     console.table(response.data)
                })
-               .catch(error => {
-                    console.log(error)
+               .catch( error => {
+                    console.error(error)
                })
 
      }, [setData])

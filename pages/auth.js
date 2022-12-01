@@ -12,9 +12,14 @@ const auth = () => {
      const router = useRouter()
      const handlerSubmit = () => {
           console.log(inputRef.current.value)
-          const id = inputRef.current.value
-          localStorage.setItem('userId',id)
-          router.push('/todo')
+          let id = inputRef.current.value
+          console.log(id)
+          if(id !== null | id !== undefined | id !== String) {
+               localStorage.setItem('userId',id)
+               router.push('/todo')
+          } else {
+               console.error()
+          }
      }
 
      return (
@@ -24,7 +29,7 @@ const auth = () => {
                     <h1 className='text-3xl text-cyan-800 mb-10'>Welcome Back!</h1>
                     <div className='w-full h-full'>
                          <label className='text-green-900 text-lg'>ID</label>
-                         <input id='id' name='id' className='my-2 w-full h-12 text-lg font-bold px-4 border-2 border-blue-500 rounded-xl' ref={inputRef} />
+                         <input id='id' name='id' maxLength={4} minLength={4} className='my-2 w-full h-12 text-lg font-bold px-4 border-2 border-blue-500 rounded-xl' ref={inputRef} required/>
                          <button onClick={handlerSubmit} className='bg-sky-700 text-white w-full py-3 rounded-xl'>Unlock</button>
                     </div>
                </div>

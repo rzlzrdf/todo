@@ -8,7 +8,7 @@ const todo = (props) => {
      // eslint-disable-next-line react-hooks/rules-of-hooks
      const submitHandler = () => {
           console.log('Submit Pressed')
-          var postData = {
+          let postData = {
                title: 'Rizal Tes',
                completed: true,
                userId: 1
@@ -32,7 +32,7 @@ const todo = (props) => {
 
      return (
           <div className='max-w-full min-h-screen flex flex-col items-center justify-start gap-10 p-5 bg-yellow-100 relative'>
-               <Navigation submit={submitHandler}  />
+               <Navigation submit={submitHandler} />
                <Todos />
                <footer className='absolute bottom-0 bg-amber-200 w-full text-center'>Created by Rizal @2022</footer>
           </div>
